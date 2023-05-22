@@ -29,11 +29,6 @@ input:focus {
   background-color: #11111c;
 }
 
-/* Target the input with autofill */
-input:not(:defined) {
-  background-color: yellow !important; /* Change this to your desired color */
-}
-
 .container {
   position: relative;
   margin: 0 auto;

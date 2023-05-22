@@ -1,5 +1,5 @@
 .auth {
-    background-image: url('../../public/images/auth-bg.jpg');
+    background-image: url('../../../images/auth-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -17,7 +17,7 @@
 }
 
 /* NAV */
-.nav_section {
+.nav_form {
     display: flex;
     align-items: center;
     gap: 50px;
@@ -25,7 +25,7 @@
     padding: 3rem 0;
 }
 
-.nav_section .circle {
+.nav_form .circle {
     background-color: #3345a3;
     width: 40px;
     height: 40px;
@@ -34,34 +34,36 @@
     left: 30px;
 }
 
-.nav_section ul {
+.nav_form ul {
     display: flex;
     align-items: center;
     gap: 50px;
 }
 
 /* FORM */
-.section {
+.form_section {
     max-width: 600px;
     color: #fff;
     margin: 100px 0;
 }
 
-.section h4 {
+.form_section h4 {
     text-transform: uppercase;
     color: #999;
     font-size: 1.4rem;
 }
 
-.section h1 {
+.form_section h1 {
     font-size: 4.5rem;
     font-weight: 900;
     font-family: Arial;
     margin: 10px 0;
 }
 
-.section span {
+.form_section span {
     color: #999;
+    display: block;
+    margin-bottom: 30px;
 }
 
 .form_container {
@@ -69,7 +71,6 @@
     align-items: center;
     gap: 10px;
     width: 100%;
-    margin-top: 30px;
 }
 
 .input_container {
