@@ -6,7 +6,7 @@ export const Nav = () => {
         <nav className='nav'>
             <div className="container">
                 <div className='section'>
-                    <h1>Reactify Blog</h1>
+                    <h1>Reactify</h1>
                     <ul>
                         <li><Link to='/login'>Login</Link></li>
                         <li><Link to='/register'>Create account</Link></li>

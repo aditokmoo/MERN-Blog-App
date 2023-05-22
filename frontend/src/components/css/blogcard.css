@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+.blog {
+    background-color: #000;
+    color: #fff;
+    padding: 1rem 0;
+    border-radius: 6px;
+    transition: .3s;
+    cursor: pointer;
+    border: 3px solid #333;
+    -webkit-box-shadow: 0px 0px 8px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 8px -3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 8px -3px rgba(0,0,0,0.75);
+}
+
+.blog:hover {
+   border-color: #637ccd;
+   opacity: .8;
+}
+
+/* Profile details */
+.blog .profile_details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 0 1rem 1rem;
+}
+
+.blog .profile_details img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+}
+
+/* Blog image */
+.blog img {
+    width: 100%;
+}
+
+/* Blog content */
+.blog .heading {
+    padding: 1rem 2rem;
+}
+
+.blog .heading h2 {
+    font-weight: 900;
+    font-family: Poppins;
+    font-size: 1.8rem;
+}
+
+.blog .heading ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.blog .heading ul li {
+    font-size: 2rem;
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.blog .heading ul li:hover {
+    color: #fff;
+}
