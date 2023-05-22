@@ -15,9 +15,23 @@ body {
   font-size: 1.6rem;
 }
 
+li {
+  list-style: none;
+}
+
 a {
   text-decoration: none;
   color: #fff;
+}
+
+input:focus {
+  outline: none;
+  background-color: #11111c;
+}
+
+/* Target the input with autofill */
+input:not(:defined) {
+  background-color: yellow !important; /* Change this to your desired color */
 }
 
 .container {

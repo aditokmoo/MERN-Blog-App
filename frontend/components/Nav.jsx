@@ -11,10 +11,10 @@ export default function Nav() {
         <nav className={styles.nav}>
             <div className="container">
                 <div className={styles.section}>
-                    <h1 className={poppins.className}>Adito Blog</h1>
+                    <h1 className={poppins.className}>Reactify Blog</h1>
                     <ul>
-                        <Link href='/login'>Login</Link>
-                        <Link href='/register'>Create account</Link>
+                        <li><Link href='/login'>Login</Link></li>
+                        <li><Link href='/register'>Create account</Link></li>
                     </ul>
                 </div>
             </div>

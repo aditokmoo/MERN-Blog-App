@@ -1,0 +1,118 @@
+.auth {
+    background-image: url('../../public/images/auth-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.overlay {
+    background: rgb(10,10,14);
+    background: linear-gradient(67deg, rgba(10,10,14,1) 50%, rgba(6,6,8,0.8911939775910365) 59%, rgba(2,12,14,0.7259278711484594) 89%);
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* NAV */
+.nav_section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    color: #fff;
+    padding: 3rem 0;
+}
+
+.nav_section .circle {
+    background-color: #3345a3;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    left: 30px;
+}
+
+.nav_section ul {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+/* FORM */
+.section {
+    max-width: 600px;
+    color: #fff;
+    margin: 100px 0;
+}
+
+.section h4 {
+    text-transform: uppercase;
+    color: #999;
+    font-size: 1.4rem;
+}
+
+.section h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    font-family: Arial;
+    margin: 10px 0;
+}
+
+.section span {
+    color: #999;
+}
+
+.form_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.input_container {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+.input {
+    padding: 1.5rem 1.5rem 1.5rem 3.3rem;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #24292f;
+    border: 1px solid #212333;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1.2rem 2.5rem 1.2rem 1rem;
+    background-color: #305cc2;
+    color: #fff;
+    border: 1px solid #3345a3;
+    margin: 30px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover {
+    opacity: .7;
+}
+
+.input_icons {
+    position: absolute;
+    top: 26px;
+    left: 10px;
+    color: #888;
+}
+
+.icon {
+    font-size: 2.3rem;
+}
