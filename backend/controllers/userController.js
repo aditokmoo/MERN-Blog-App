@@ -8,10 +8,10 @@ const createToken = (_id) => {
 
 // Register User Function
 const register = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, confirmPassword } = req.body;
     
     try {
-        const user = await User.register(username, email, password);
+        const user = await User.register(username, email, password, confirmPassword);
         const token = await createToken(user._id);
 
         res.status(200).json({ email, token })

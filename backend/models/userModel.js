@@ -16,13 +16,17 @@ const UserScheme = new Schema({
     password: {
         type: String,
         required: true,
+    },
+    confirmPassword: {
+        type: String,
+        required: true,
     }
 })
 
 // Register
-UserScheme.statics.register = async function(username, email, password) {
+UserScheme.statics.register = async function(username, email, password, confirmPassword) {
     // Check if email and password exist
-    if(!username || !email || !password) {
+    if(!username || !email || !password || !confirmPassword) {
         throw Error('All fields must be fiiled')
     }
     // Check if username has min length 3 char
@@ -37,6 +41,10 @@ UserScheme.statics.register = async function(username, email, password) {
     if(!validator.isStrongPassword(password)) {
         throw Error('Password is not strong enough')
     }
+    // Check if password is confirmed
+    if(password !== confirmPassword) {
+        throw Error('Please confirm password')
+    } 
     
     // Check if email already exists in db
     const exists = await this.findOne({ email })
@@ -49,8 +57,9 @@ UserScheme.statics.register = async function(username, email, password) {
     const salt = await bcrypt.genSalt(10);
     // Hash password
     const hash = await bcrypt.hash(password, salt);
+    const hash_confirmed = await bcrypt.hash(confirmPassword, salt);
     // Create user
-    const user = await this.create({ username, email, password: hash });
+    const user = await this.create({ username, email, password: hash, confirmPassword: hash_confirmed });
     
     return user;
 }
