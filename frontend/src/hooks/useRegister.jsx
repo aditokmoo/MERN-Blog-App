@@ -43,7 +43,7 @@ export const useRegister = () => {
             // Disable loading
             setIsLoading(false)
             // Navigate to home page
-            navigate('/')
+            navigate('/details')
         }
     }
 
