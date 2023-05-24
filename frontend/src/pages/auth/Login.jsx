@@ -4,8 +4,21 @@ import { BiLogIn, BiLock } from 'react-icons/bi';
 import { HiOutlineMail } from 'react-icons/hi';
 // CSS
 import './css/auth.css';
+import { useLogin } from '../../hooks/useLogin';
+import { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 export const Login = () => {
+	const [ email, setEmail ] = useState('');
+	const [ password, setPassword ] = useState('');
+	const { login, isLoading } = useLogin();
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		await login(email, password)
+	}
+
 	return (
 		<section>
 			<div className='auth'>
@@ -28,15 +41,15 @@ export const Login = () => {
 						<span>
 							Don't have account? <Link to="/register">Register</Link>
 						</span>
-						<form>
+						<form onSubmit={handleSubmit}>
 							<div className="input_container">
 								<HiOutlineMail className="input_icons" />
-								<input type="text" placeholder="Email" className="input" />
+								<input type="text" placeholder="Email" className="input" onChange={e => setEmail(e.target.value)} />
 							</div>
 
 							<div className="input_container">
 								<BiLock className="input_icons" />
-								<input type="password" placeholder="Password" className="input" />
+								<input type="password" placeholder="Password" className="input" onChange={e => setPassword(e.target.value)} />
 							</div>
 							<button className="button">
 								<BiLogIn className="icon" /> Login
@@ -45,6 +58,18 @@ export const Login = () => {
 					</div>
 				</div>
 			</div>
+			<ToastContainer
+				position="top-right"
+				autoClose={2000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable={false}
+				pauseOnHover
+				theme="dark"
+			/>
 		</section>
 	);
 };
