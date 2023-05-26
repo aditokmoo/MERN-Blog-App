@@ -23,3 +23,17 @@
     padding: 1rem 2rem;
     border-radius: 5px;
 }
+
+.nav .section ul li button {
+    color: #000;
+    background-color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.nav .section ul li button:hover {
+    opacity: .7;
+}

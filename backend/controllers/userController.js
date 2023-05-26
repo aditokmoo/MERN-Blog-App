@@ -14,7 +14,7 @@ const register = async (req, res) => {
         const user = await User.register(username, email, password, confirmPassword);
         const token = await createToken(user._id);
 
-        res.status(200).json({ email, token })
+        res.status(200).json({ username, email, token })
     } catch(error) {
         res.status(400).json({ error: error.message })
     }
