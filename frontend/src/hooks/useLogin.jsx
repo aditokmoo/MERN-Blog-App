@@ -9,7 +9,7 @@ export const useLogin = () => {
 
     const navigate = useNavigate();
 
-    const login = async (email, password) => {
+    const login = async (username, password) => {
         setIsLoading(true)
 
         const response = await fetch('/api/user/login', {
@@ -17,7 +17,7 @@ export const useLogin = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ username, password })
         });
         const data = await response.json();
 

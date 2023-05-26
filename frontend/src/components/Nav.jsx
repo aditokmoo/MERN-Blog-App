@@ -1,9 +1,13 @@
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
 import { Link } from 'react-router-dom';
 import './css/nav.css'
 
 export const Nav = () => {
     const { user } = useAuthContext();
+    const { logout } = useLogout();
+
+    console.log(user)
 
     return (
         <nav className='nav'>
@@ -14,7 +18,7 @@ export const Nav = () => {
                         <ul>
                             
                             <li><Link to='/profile'>{user.username}</Link></li>
-                            <li><button>Logout</button></li>
+                            <li><button onClick={logout}>Logout</button></li>
                         </ul>
                     ): (
                         <ul>

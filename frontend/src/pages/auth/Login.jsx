@@ -9,14 +9,14 @@ import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 export const Login = () => {
-	const [ email, setEmail ] = useState('');
+	const [ username, setUsername ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const { login, isLoading } = useLogin();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		await login(email, password)
+		await login(username, password)
 	}
 
 	return (
@@ -44,7 +44,7 @@ export const Login = () => {
 						<form onSubmit={handleSubmit}>
 							<div className="input_container">
 								<HiOutlineMail className="input_icons" />
-								<input type="text" placeholder="Email" className="input" onChange={e => setEmail(e.target.value)} />
+								<input type="text" placeholder="Username" className="input" onChange={e => setUsername(e.target.value)} />
 							</div>
 
 							<div className="input_container">
