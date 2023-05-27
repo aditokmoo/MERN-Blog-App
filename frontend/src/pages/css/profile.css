@@ -1,0 +1,87 @@
+.profile {
+    margin: 50px 0;
+    display: flex;
+    width: 100%;
+    color: #fff;
+}
+
+/* SIDE BAR */
+.profile .side_bar {
+    width: 25%;
+    height: 100%;
+    border-right: 1px solid #333;
+    padding-right: 20px;
+}
+/* Profile image */
+.profile .side_bar img {
+    width: 100%;
+    height: 300px;
+    border: 6px solid #637ccd;
+    border-radius: 10px;
+}
+
+/* Profile details */
+.profile .side_bar .details {
+    margin: 20px 0;
+    list-style: none;
+}
+
+.profile .side_bar .details li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    background-color: #637ccd;
+    border-radius: 5px;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.profile .side_bar .details li span {
+    background-color: #222;
+    color: #fff;
+    padding: 10px;
+    font-size: 1.3rem;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 70%;
+    text-align: right;
+}
+
+/* Profile Menu */
+.profile .side_bar h3 {
+    margin: 30px 0 15px 10px;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 10px 0;
+}
+
+.profile .side_bar .menu li a,
+.profile .side_bar .menu li:last-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: #637ccd;
+    border: 1px solid #637ccd;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.profile .side_bar .menu li a:hover,
+.profile .side_bar .menu li:last-child:hover {
+    background-color: #fff;
+    border-color: #637ccd;
+    color: #637ccd;
+    font-weight: bold;
+}
+
+/* BLOGS */
+.profile .user_blogs {
+    width: 75%;
+    padding: 0 20px;
+}

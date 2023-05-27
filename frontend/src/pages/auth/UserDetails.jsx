@@ -1,3 +1,4 @@
+import { Nav } from '../../components/Nav';
 import { useNavigate } from 'react-router';
 // React icons
 import { FaImage } from 'react-icons/fa'
@@ -12,7 +13,9 @@ export const UserDetails = () => {
     }
 
     return (
-        <div className="details">
+        <>
+            <Nav />
+            <div className="details">
             <div className="container">
                 <h1>User Details</h1>
                 {/* User details */}
@@ -46,5 +49,6 @@ export const UserDetails = () => {
             </div>
                 <button id='submit_btn' onClick={handleClick}>Submit</button>
         </div>
+        </>
     )
 }
