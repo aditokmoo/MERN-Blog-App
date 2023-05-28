@@ -63,8 +63,8 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    background-color: #637ccd;
-    border: 1px solid #637ccd;
+    background-color: #111;
+    border: 1px solid #111;
     border-radius: 5px;
     margin: 10px 0;
     padding: 10px;
@@ -74,9 +74,9 @@
 
 .profile .side_bar .menu li a:hover,
 .profile .side_bar .menu li:last-child:hover {
-    background-color: #fff;
+    background-color: #637ccd;
     border-color: #637ccd;
-    color: #637ccd;
+    color: #fff;
     font-weight: bold;
 }
 
