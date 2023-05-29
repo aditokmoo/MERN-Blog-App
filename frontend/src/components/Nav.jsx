@@ -11,7 +11,7 @@ export const Nav = () => {
         <nav className='nav'>
             <div className="container">
                 <div className='section'>
-                    <h1>Reactify</h1>
+                    <h1><Link to='/'>Reactify</Link></h1>
                     {user ? (
                         <ul>
                             <li><Link to={`/profile/${user.username}`}>{user.username}</Link></li>

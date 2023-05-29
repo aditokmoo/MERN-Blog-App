@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Nav } from '../components/Nav';
 // Hooks
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -7,9 +7,8 @@ import { useUser } from '../hooks/useUser';
 // images
 import userNoImage from '../images/no-image-profile.png';
 //react-icons
-import { AiOutlineHome } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
-import { TbLogout } from 'react-icons/tb';
+import { FaPlus } from 'react-icons/fa';
 //css
 import './css/profile.css';
 
@@ -17,7 +16,7 @@ export const Profile = () => {
 	const { user } = useAuthContext();
 	const { logout } = useLogout();
 	const { userData } = useUser();
-
+	const { id } = useParams();
 	const { username, email } = userData
 
 	return (
@@ -38,22 +37,23 @@ export const Profile = () => {
 							</li>
 						</ul>
 						{/* Profile Menu */}
-						<h3>Menu</h3>
-						<ul className="menu">
-							<li>
-								<Link to="/">
-									<AiOutlineHome /> Home
-								</Link>
-							</li>
-							<li>
-								<Link to="/details">
-									<FiEdit /> Details
-								</Link>
-							</li>
-							<li onClick={logout}>
-								<TbLogout /> Logout
-							</li>
-						</ul>
+						{user && user.username === id && (
+						<>
+							<h3>Menu</h3>
+							<ul className="menu">
+								<li>
+									<Link to="/details">
+										<FaPlus /> Create post
+									</Link>
+								</li>
+								<li>
+									<Link to="/details">
+										<FiEdit /> Edit profile
+									</Link>
+								</li>
+							</ul>
+						</>
+						)}
 					</div>
 					<div className="user_blogs">
 						<h1>{username} blog's</h1>

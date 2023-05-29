@@ -58,8 +58,7 @@
     padding: 10px 0;
 }
 
-.profile .side_bar .menu li a,
-.profile .side_bar .menu li:last-child {
+.profile .side_bar .menu li a {
     display: flex;
     gap: 10px;
     align-items: center;
@@ -67,13 +66,12 @@
     border: 1px solid #111;
     border-radius: 5px;
     margin: 10px 0;
-    padding: 10px;
+    padding: 1.5rem;
     cursor: pointer;
     transition: .2s;
 }
 
-.profile .side_bar .menu li a:hover,
-.profile .side_bar .menu li:last-child:hover {
+.profile .side_bar .menu li a:hover {
     background-color: #637ccd;
     border-color: #637ccd;
     color: #fff;
