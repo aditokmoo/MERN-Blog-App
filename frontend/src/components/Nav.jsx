@@ -7,8 +7,6 @@ export const Nav = () => {
     const { user } = useAuthContext();
     const { logout } = useLogout();
 
-    console.log(user)
-
     return (
         <nav className='nav'>
             <div className="container">
@@ -16,8 +14,7 @@ export const Nav = () => {
                     <h1>Reactify</h1>
                     {user ? (
                         <ul>
-                            
-                            <li><Link to='/profile'>{user.username}</Link></li>
+                            <li><Link to={`/profile/${user.username}`}>{user.username}</Link></li>
                             <li><button onClick={logout}>Logout</button></li>
                         </ul>
                     ): (

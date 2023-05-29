@@ -70,7 +70,7 @@ UserScheme.statics.login = async function(username, password) {
         throw Error('All fields must be filled')
     }
 
-    // Find user email
+    // Find user username
     const user = await this.findOne({ username });
 
     if(!user) {

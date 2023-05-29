@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Nav } from '../components/Nav';
 // Hooks
-import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
+import { useUser } from '../hooks/useUser';
 // images
 import userNoImage from '../images/no-image-profile.png';
 //react-icons
@@ -15,6 +16,9 @@ import './css/profile.css';
 export const Profile = () => {
 	const { user } = useAuthContext();
 	const { logout } = useLogout();
+	const { userData } = useUser();
+
+	const { username, email } = userData
 
 	return (
 		<main>
@@ -27,7 +31,10 @@ export const Profile = () => {
 						{/* Profile Details */}
 						<ul className="details">
 							<li>
-								Username <span>{user && user.username}</span>
+								Username <span>{username}</span>
+							</li>
+							<li>
+								Email <span>{email}</span>
 							</li>
 						</ul>
 						{/* Profile Menu */}
@@ -49,7 +56,7 @@ export const Profile = () => {
 						</ul>
 					</div>
 					<div className="user_blogs">
-						<h1>{user && user.username} blog's</h1>
+						<h1>{username} blog's</h1>
 					</div>
 				</div>
 			</div>
