@@ -2,7 +2,6 @@ import { Link, useParams } from 'react-router-dom';
 import { Nav } from '../components/Nav';
 // Hooks
 import { useAuthContext } from '../hooks/useAuthContext';
-import { useLogout } from '../hooks/useLogout';
 import { useUser } from '../hooks/useUser';
 // images
 import userNoImage from '../images/no-image-profile.png';
@@ -14,7 +13,6 @@ import './css/profile.css';
 
 export const Profile = () => {
 	const { user } = useAuthContext();
-	const { logout } = useLogout();
 	const { userData } = useUser();
 	const { id } = useParams();
 	const { username, email } = userData

@@ -209,21 +209,36 @@
     opacity: .7;
 }
 
-#submit_btn {
-    padding: 1.5rem;
-    width: 150px;
+.btns {
     position: absolute;
     bottom: 30px;
     right: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+#submit_btn, #back_btn {
+    padding: 1.5rem;
+    width: 150px;
     font-weight: 900;
     border-radius: 5px;
     cursor: pointer;
     border: none;
-    background-color: #305cc2;
     color: #fff;
     transition: .3s;
 }
 
-#submit_btn:hover {
+#submit_btn {
+    background-color: #305cc2;
+}
+
+#back_btn {
+    background-color: transparent;
+    color: #305cc2;
+    border: 1px solid #305cc2;
+}
+
+#submit_btn:hover,
+#back_btn:hover {
     opacity: .7;
 }

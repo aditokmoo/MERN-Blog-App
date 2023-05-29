@@ -1,16 +1,16 @@
 import { Nav } from '../../components/Nav';
 import { useNavigate } from 'react-router';
+import { useAuthContext } from '../../hooks/useAuthContext';
 // React icons
 import { FaImage } from 'react-icons/fa'
 // CSS
 import './css/auth.css';
 
 export const UserDetails = () => {
+    const { user } = useAuthContext();
     const navigate = useNavigate();
-    
-    const handleClick = () => {
-        navigate('/')
-    }
+
+    const handleClick = () => navigate(`/profile/${user.username}`)
 
     return (
         <>
@@ -47,7 +47,10 @@ export const UserDetails = () => {
                 </div>
 
             </div>
+            <div className="btns">
+                <button id='back_btn' onClick={handleClick}>Back</button>
                 <button id='submit_btn' onClick={handleClick}>Submit</button>
+            </div>
         </div>
         </>
     )

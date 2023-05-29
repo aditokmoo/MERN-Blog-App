@@ -19,11 +19,6 @@ export const AuthContextProvider = ({ children }) => {
         }
     }, [])
 
-    // Side effect for getting all users
-    useEffect(() => {
-        console.log(usersData)
-    }, [])
-
     return (
         <AuthContext.Provider value={{...state, dispatch}}>
             {children}

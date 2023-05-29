@@ -15,8 +15,6 @@ export const useUser = () => {
 			const response = await fetch(`/api/user/profile/${username}`);
 			const data = await response.json();
 
-            console.log(data)
-
 			setUserData(data);
 		};
 

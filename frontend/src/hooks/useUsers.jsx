@@ -9,8 +9,6 @@ export const useUsers = () => {
             const data = await response.json();
     
             setUsersData(data);
-    
-            console.log(data)
         }
 
         getUsers();
