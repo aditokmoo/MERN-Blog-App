@@ -45,7 +45,7 @@ export const Profile = () => {
 									</Link>
 								</li>
 								<li>
-									<Link to="/details">
+									<Link to={`/profile/${user.username}/details`}>
 										<FiEdit /> Edit profile
 									</Link>
 								</li>

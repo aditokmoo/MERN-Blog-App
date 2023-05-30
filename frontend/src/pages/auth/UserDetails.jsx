@@ -1,16 +1,35 @@
 import { Nav } from '../../components/Nav';
 import { useNavigate } from 'react-router';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { useUser } from '../../hooks/useUser';
 // React icons
 import { FaImage } from 'react-icons/fa'
 // CSS
 import './css/auth.css';
+import { useState } from 'react';
 
 export const UserDetails = () => {
+    // Context
     const { user } = useAuthContext();
+    // Custom hook
+    const { userData } = useUser();
+    // State
+    const [ username, setUsername ] = useState('');
+    const [ email, setEmail ] = useState();
+    const [ password, setPassword ] = useState();
+    const [ edit, setEdit ] = useState(false);
+    // hook
     const navigate = useNavigate();
-
+    
+    // Submit Function
     const handleClick = () => navigate(`/profile/${user.username}`)
+
+    // Edit user data
+    const editUserData = (e) => {
+        e.preventDefault();
+
+        setEdit(prevState => !prevState)
+    } 
 
     return (
         <>
@@ -20,22 +39,22 @@ export const UserDetails = () => {
                 <h1>User Details</h1>
                 {/* User details */}
                 <div className="user_details">
-                    <form>
+                    <form onSubmit={editUserData}>
                         <div className="form_container">
                             <div className="input_container">
                                 <label htmlFor="username">Username</label>
-                                <input type="text" placeholder="Username" id="username" />
+                                <input type="text" placeholder={userData.username} id="username" value={username} onChange={e => setUsername(e.target.value)} readOnly={edit ? false : true} />
                             </div>
                             <div className="input_container">
                             <label htmlFor="email">Email</label>
-                                <input type="email" placeholder="Email" id="email" />
+                                <input type="email" placeholder={userData.email} id="email" value={email} onChange={e => setEmail(e.target.value)} readOnly={edit ? false : true} />
                             </div>
                             <div className="input_container">
                                 <label htmlFor="password">Password</label>
-                                <input type="password" placeholder="Password" id="password" />
+                                <input type="password" placeholder="Password" id="password" value={password} onChange={e => setPassword(e.target.value)} readOnly={edit ? false : true} />
                             </div>
                         </div>
-                            <button>Edit</button>
+                            <button>{edit ? 'Save' : 'Edit'}</button>
                     </form>
                 </div>
                 {/* User image */}
