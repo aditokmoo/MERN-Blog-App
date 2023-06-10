@@ -2,9 +2,11 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogout } from '../hooks/useLogout';
 import { Link } from 'react-router-dom';
 import './css/nav.css'
+import { useUser } from '../hooks/useUser';
 
 export const Nav = () => {
     const { user } = useAuthContext();
+    const { userData } = useUser();
     const { logout } = useLogout();
 
     return (

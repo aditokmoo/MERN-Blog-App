@@ -1,6 +1,47 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
+// Change profile image
+const updateProfile = async (req, res) => {
+   const { username, email, password } = req.body;
+   const { name } = req.params;
+   const image = req.uniqueName;
+
+   try {
+        const user = await User.findOne({ username: name });
+
+        // if user dosnt exist give some response
+        if(!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        // if username exist then update 
+        if(username) {
+            user.username = username
+        }
+        // if email exist then update 
+        if(email) {
+            user.email = email
+        }
+        // if password exist then update 
+        if(password) {
+            user.password = password
+        }
+        // if image exist then update
+        if(image) {
+            user.image = image;
+        }
+
+        // Save updated user to db
+        await user.save();
+
+        // Send response
+        res.status(200).json(user)
+   } catch (error) {
+    
+   }
+}
+
 // Create token
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.JWT_SECRET, { expiresIn: '3d' })
@@ -8,10 +49,10 @@ const createToken = (_id) => {
 
 // Register User Function
 const register = async (req, res) => {
-    const { username, email, password, confirmPassword } = req.body;
+    const { username, email, password, confirmPassword, image } = req.body;
     
     try {
-        const user = await User.register(username, email, password, confirmPassword);
+        const user = await User.register(username, email, password, confirmPassword, image);
         const token = await createToken(user._id);
 
         res.status(200).json({ username, email, token })
@@ -33,6 +74,7 @@ const login = async (req, res) => {
         res.status(400).json({ error: error.message })
     }
 }
+
 
 // Get All Users Funciton
 const getAllUsers = async (req ,res) => {
@@ -60,6 +102,7 @@ const getUser = async (req, res) => {
 module.exports = {
     register,
     login,
+    updateProfile,
     getAllUsers,
     getUser
 }

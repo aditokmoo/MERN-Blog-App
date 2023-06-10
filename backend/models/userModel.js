@@ -20,11 +20,14 @@ const UserScheme = new Schema({
     confirmPassword: {
         type: String,
         required: true,
+    },
+    image: {
+        type: String
     }
 })
 
 // Register
-UserScheme.statics.register = async function(username, email, password, confirmPassword) {
+UserScheme.statics.register = async function(username, email, password, confirmPassword, image) {
     // Check if email and password exist
     if(!username || !email || !password || !confirmPassword) {
         throw Error('All fields must be fiiled')
@@ -59,7 +62,7 @@ UserScheme.statics.register = async function(username, email, password, confirmP
     const hash = await bcrypt.hash(password, salt);
     const hash_confirmed = await bcrypt.hash(confirmPassword, salt);
     // Create user
-    const user = await this.create({ username, email, password: hash, confirmPassword: hash_confirmed });
+    const user = await this.create({ username, email, password: hash, confirmPassword: hash_confirmed, image });
     
     return user;
 }

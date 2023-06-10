@@ -11,6 +11,10 @@ app.use(express.json())
 // Routes
 app.use('/api/user', userRoutes)
 
+app.use((err,req,res,next) => {  
+    res.status(500).json({ message:err.message, stack:err.stack })
+})
+
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

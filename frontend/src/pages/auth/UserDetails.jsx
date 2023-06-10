@@ -1,76 +1,127 @@
+import { useState } from 'react';
 import { Nav } from '../../components/Nav';
 import { useNavigate } from 'react-router';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useUser } from '../../hooks/useUser';
-// React icons
-import { FaImage } from 'react-icons/fa'
+import axios from 'axios';
+import ProfileImage from '../../components/ProfileImage';
 // CSS
 import './css/auth.css';
-import { useState } from 'react';
 
 export const UserDetails = () => {
-    // Context
-    const { user } = useAuthContext();
-    // Custom hook
-    const { userData } = useUser();
-    // State
-    const [ username, setUsername ] = useState('');
-    const [ email, setEmail ] = useState();
-    const [ password, setPassword ] = useState();
-    const [ edit, setEdit ] = useState(false);
-    // hook
-    const navigate = useNavigate();
-    
-    // Submit Function
-    const handleClick = () => navigate(`/profile/${user.username}`)
+	// Context
+	const { user } = useAuthContext();
+	// Custom hook
+	const { userData } = useUser();
+	// hook
+	const navigate = useNavigate();
+	// State
+	const [ profileData, setProfileData ] = useState({
+		username: '',
+		email: '',
+		password: ''
+	});
+	const [ file, setFile ] = useState();
+	const [ fileImage, setFileImage ] = useState();
+	const [ edit, setEdit ] = useState(false);
 
-    // Edit user data
-    const editUserData = (e) => {
-        e.preventDefault();
+	// Submit Function
+	const handleClick = () => navigate(`/profile/${user.username}`);
 
-        setEdit(prevState => !prevState)
-    } 
+	const handleFormChange = (e) => {
+		// Set user details form data
+		setProfileData((prevState) => ({
+			...prevState,
+			[e.target.id]: e.target.value
+		}));
+	};
 
-    return (
-        <>
-            <Nav />
-            <div className="details">
-            <div className="container">
-                <h1>User Details</h1>
-                {/* User details */}
-                <div className="user_details">
-                    <form onSubmit={editUserData}>
-                        <div className="form_container">
-                            <div className="input_container">
-                                <label htmlFor="username">Username</label>
-                                <input type="text" placeholder={userData.username} id="username" value={username} onChange={e => setUsername(e.target.value)} readOnly={edit ? false : true} />
-                            </div>
-                            <div className="input_container">
-                            <label htmlFor="email">Email</label>
-                                <input type="email" placeholder={userData.email} id="email" value={email} onChange={e => setEmail(e.target.value)} readOnly={edit ? false : true} />
-                            </div>
-                            <div className="input_container">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" placeholder="Password" id="password" value={password} onChange={e => setPassword(e.target.value)} readOnly={edit ? false : true} />
-                            </div>
-                        </div>
-                            <button>{edit ? 'Save' : 'Edit'}</button>
-                    </form>
-                </div>
-                {/* User image */}
-                <div className="user_image">
-                    <div className="image">
-                        <FaImage  />
-                    </div>
-                    <button>Add Image</button>
-                </div>
+	const handleImageChange = (e) => {
+		setFile(e.target.files[0]);
+		const reader = new FileReader();
+		reader.readAsDataURL(e.target.files[0])
+		reader.onload = () => setFileImage(reader.result)
+	};
 
-            </div>
-            <div className="btns">
-                <button id='back_btn' onClick={handleClick}>Back</button>
-                <button id='submit_btn' onClick={handleClick}>Submit</button>
-            </div>
-        </div>
-        </>
-    )
-}
+	const updateProfile = async (e) => {
+		e.preventDefault();
+
+		const formData = new FormData();
+		formData.append('username', profileData.username);
+		formData.append('email', profileData.email);
+		formData.append('password', profileData.password);
+		formData.append('image', file)
+
+		try {
+			const res = await axios.patch(`/api/user/profile/${userData.username}/details`, formData)
+	
+			console.log(res.data)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	return (
+		<>
+			<Nav />
+			<div className="details">
+				
+					<div className="container">
+						<h1>User Details</h1>
+						{/* User details */}
+						<div className="user_details">
+							<div className="form_container">
+								<div className="input_container">
+									<label htmlFor="username">Username</label>
+									<input
+										type="text"
+										placeholder={userData.username}
+										id="username"
+										name='username'
+										value={profileData.username}
+										onChange={handleFormChange}
+										readOnly={edit ? false : true}
+									/>
+								</div>
+								<div className="input_container">
+									<label htmlFor="email">Email</label>
+									<input
+										type="email"
+										placeholder={userData.email}
+										id="email"
+										name='email'
+										value={profileData.email}
+										onChange={handleFormChange}
+										readOnly={edit ? false : true}
+									/>
+								</div>
+								<div className="input_container">
+									<label htmlFor="password">Password</label>
+									<input
+										type="password"
+										placeholder="Password"
+										id="password"
+										name='password'
+										value={profileData.password}
+										onChange={handleFormChange}
+										readOnly={edit ? false : true}
+									/>
+								</div>
+							</div>
+							<button onClick={() => setEdit(prevState => !prevState)}>{edit ? 'Save' : 'Edit'}</button>
+						</div>
+						{/* User image */}
+						<ProfileImage handleImageChange={handleImageChange} file={file} user={user} fileImage={fileImage} />
+
+						<div className="btns">
+							<button id="back_btn" onClick={handleClick}>
+								Back
+							</button>
+							<button id='submit_btn' onClick={updateProfile}>Submit</button>
+						</div>
+				</div>
+				
+			</div>
+		</>
+	);
+};

@@ -5,6 +5,8 @@ import { BiUser, BiLogIn, BiLock } from 'react-icons/bi';
 import { HiOutlineMail } from 'react-icons/hi';
 // Hooks
 import { useRegister } from '../../hooks/useRegister';
+// images
+import userNoImage from '../../images/no-image-profile.png';
 // CSS
 import './css/auth.css';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -20,7 +22,9 @@ export const Register = () => {
 	const handleSubmit = async (e) => {
         e.preventDefault();
 
-		await register(username, email, password, confirmPassword);
+		const image = userNoImage
+
+		await register(username, email, password, confirmPassword, image);
 	};
 
 	return (

@@ -18,6 +18,7 @@
     height: 300px;
     border: 6px solid #637ccd;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 /* Profile details */

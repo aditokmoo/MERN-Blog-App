@@ -10,12 +10,14 @@ import { FiEdit } from 'react-icons/fi';
 import { FaPlus } from 'react-icons/fa';
 //css
 import './css/profile.css';
+import { useUsers } from '../hooks/useUsers';
 
 export const Profile = () => {
 	const { user } = useAuthContext();
 	const { userData } = useUser();
+	const { usersData } = useUsers();
 	const { id } = useParams();
-	const { username, email } = userData
+	const { username, email, image } = userData
 
 	return (
 		<main>
@@ -24,7 +26,7 @@ export const Profile = () => {
 				<div className="profile">
 					<div className="side_bar">
 						{/* Profile Image */}
-						<img src={userNoImage} alt="profile image" />
+						<img src={userData.image === userNoImage ? userNoImage : `../../public/userImages/${userData.image}`} alt="profile image" />
 						{/* Profile Details */}
 						<ul className="details">
 							<li>

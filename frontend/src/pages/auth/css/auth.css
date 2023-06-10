@@ -181,21 +181,23 @@
     width: 200px;
 }
 
-.user_image .image {
+.user_image img {
+    object-fit: cover;
     width: 100%;
-    border-radius: 6px;
     height: 180px;
-    background-color: #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5rem;
+    border-radius: 6px;
 }
 
-.user_image button {
+.user_image #image {
+    display: none;
+}
+
+.user_image label {
+    display: block;
     padding: 1rem;
     width: 100%;
     margin-top: 15px;
+    font-size: 1.2rem;
     font-weight: 900;
     border-radius: 5px;
     cursor: pointer;
@@ -203,9 +205,10 @@
     background-color: #305cc2;
     color: #fff;
     transition: .3s;
+    text-align: center;
 }
 
-.user_image button:hover {
+.user_image label:hover {
     opacity: .7;
 }
 

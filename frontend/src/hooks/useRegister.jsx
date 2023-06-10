@@ -9,7 +9,7 @@ export const useRegister = () => {
 
     const navigate = useNavigate();
 
-    const register = async (username, email, password, confirmPassword) => {
+    const register = async (username, email, password, confirmPassword, image) => {
         setIsLoading(true)
 
         const response = await fetch('/api/user/register', {
@@ -17,7 +17,7 @@ export const useRegister = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, email, password, confirmPassword })
+            body: JSON.stringify({ username, email, password, confirmPassword, image })
         })
         const data = await response.json();
 
@@ -43,7 +43,7 @@ export const useRegister = () => {
             // Disable loading
             setIsLoading(false)
             // Navigate to home page
-            navigate('/details')
+            navigate(`/profile/${username}/details`)
         }
     }
 
