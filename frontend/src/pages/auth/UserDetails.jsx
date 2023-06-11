@@ -40,8 +40,8 @@ export const UserDetails = () => {
 	const handleImageChange = (e) => {
 		setFile(e.target.files[0]);
 		const reader = new FileReader();
-		reader.readAsDataURL(e.target.files[0])
-		reader.onload = () => setFileImage(reader.result)
+		reader.readAsDataURL(e.target.files[0]);
+		reader.onload = () => setFileImage(reader.result);
 	};
 
 	const updateProfile = async (e) => {
@@ -51,84 +51,83 @@ export const UserDetails = () => {
 		formData.append('username', profileData.username);
 		formData.append('email', profileData.email);
 		formData.append('password', profileData.password);
-		formData.append('image', file)
+		formData.append('image', file);
 
 		try {
-			const res = await axios.patch(`/api/user/profile/${userData.username}/details`, formData)
-			const data = await res.data
-		
+			const res = await axios.patch(`/api/user/profile/${userData.username}/details`, formData);
+			const data = await res.data;
+
 			// Store user to localStorage
-			localStorage.setItem('user', JSON.stringify(data))
+			localStorage.setItem('user', JSON.stringify(data));
 			// Change state
-			dispatch({ type: 'UPDATE', payload: data })
+			dispatch({ type: 'UPDATE', payload: data });
 			// Navigate to profile
-			navigate(`/profile/${data.username}`)
-		
+			navigate(`/profile/${data.username}`);
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
-	}
+	};
 
 	return (
 		<>
 			<Nav />
 			<div className="details">
-				
-					<div className="container">
-						<h1>User Details</h1>
-						{/* User details */}
-						<div className="user_details">
-							<div className="form_container">
-								<div className="input_container">
-									<label htmlFor="username">Username</label>
-									<input
-										type="text"
-										placeholder={userData.username}
-										id="username"
-										name='username'
-										value={profileData.username}
-										onChange={handleFormChange}
-										readOnly={edit ? false : true}
-									/>
-								</div>
-								<div className="input_container">
-									<label htmlFor="email">Email</label>
-									<input
-										type="email"
-										placeholder={userData.email}
-										id="email"
-										name='email'
-										value={profileData.email}
-										onChange={handleFormChange}
-										readOnly={edit ? false : true}
-									/>
-								</div>
-								<div className="input_container">
-									<label htmlFor="password">Password</label>
-									<input
-										type="password"
-										placeholder="Password"
-										id="password"
-										name='password'
-										value={profileData.password}
-										onChange={handleFormChange}
-										readOnly={edit ? false : true}
-									/>
-								</div>
+				<div className="container">
+					<h1>User Details</h1>
+					{/* User details */}
+					<div className="user_details">
+						<div className="form_container">
+							<div className="input_container">
+								<label htmlFor="username">Username</label>
+								<input
+									type="text"
+									placeholder={userData.username}
+									id="username"
+									name="username"
+									value={profileData.username}
+									onChange={handleFormChange}
+									readOnly={edit ? false : true}
+								/>
 							</div>
-							<button onClick={() => setEdit(prevState => !prevState)}>{edit ? 'Save' : 'Edit'}</button>
+							<div className="input_container">
+								<label htmlFor="email">Email</label>
+								<input
+									type="email"
+									placeholder={userData.email}
+									id="email"
+									name="email"
+									value={profileData.email}
+									onChange={handleFormChange}
+									readOnly={edit ? false : true}
+								/>
+							</div>
+							<div className="input_container">
+								<label htmlFor="password">Password</label>
+								<input
+									type="password"
+									placeholder="Password"
+									id="password"
+									name="password"
+									value={profileData.password}
+									onChange={handleFormChange}
+									readOnly={edit ? false : true}
+								/>
+							</div>
 						</div>
-						{/* User image */}
-						<ProfileImage handleImageChange={handleImageChange} file={file} user={user} fileImage={fileImage} />
+						<button onClick={() => setEdit((prevState) => !prevState)}>{edit ? 'Save' : 'Edit'}</button>
+					</div>
+					{/* User image */}
+					<ProfileImage handleImageChange={handleImageChange} file={file} user={user} fileImage={fileImage} />
 
-						<div className="btns">
-							<button id="back_btn" onClick={handleClick}>
-								Back
-							</button>
-							<button id='submit_btn' onClick={updateProfile}>Submit</button>
-						</div>
+					<div className="btns">
+						<button id="back_btn" onClick={handleClick}>
+							Back
+						</button>
+						<button id="submit_btn" onClick={updateProfile}>
+							Submit
+						</button>
+					</div>
 				</div>
-				
 			</div>
 		</>
 	);
