@@ -3,7 +3,7 @@ import { useState } from 'react';
 import userNoImage from '../images/no-image-profile.png';
 import { useUser } from '../hooks/useUser';
 
-const ProfileImage = ({ handleImageChange, file, fileImage, user }) => {
+const ProfileImage = ({ handleImageChange, file, fileImage }) => {
 	const { userData } = useUser();
 
 	return (

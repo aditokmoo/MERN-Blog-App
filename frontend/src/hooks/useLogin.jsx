@@ -35,6 +35,8 @@ export const useLogin = () => {
             });
         }
 
+        console.log(data)
+
         if(response.ok) {
             // Store user to localStorage
             localStorage.setItem('user', JSON.stringify(data))

@@ -19,7 +19,7 @@ export const useUser = () => {
 		};
 
 		getUser();
-	}, [username]);
+	}, []);
 
 	return { userData };
 };

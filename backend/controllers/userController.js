@@ -9,6 +9,7 @@ const updateProfile = async (req, res) => {
 
    try {
         const user = await User.findOne({ username: name });
+        const token = await createToken(user._id);
 
         // if user dosnt exist give some response
         if(!user) {
@@ -36,7 +37,7 @@ const updateProfile = async (req, res) => {
         await user.save();
 
         // Send response
-        res.status(200).json(user)
+        res.status(200).json({ username, token })
    } catch (error) {
     
    }

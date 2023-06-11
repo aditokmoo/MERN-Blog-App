@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useUser } from '../../hooks/useUser';
 import axios from 'axios';
+// Images
 import ProfileImage from '../../components/ProfileImage';
 // CSS
 import './css/auth.css';
 
 export const UserDetails = () => {
 	// Context
-	const { user } = useAuthContext();
+	const { user, dispatch } = useAuthContext();
 	// Custom hook
 	const { userData } = useUser();
 	// hook
@@ -21,8 +22,8 @@ export const UserDetails = () => {
 		email: '',
 		password: ''
 	});
-	const [ file, setFile ] = useState();
 	const [ fileImage, setFileImage ] = useState();
+	const [ file, setFile ] = useState();
 	const [ edit, setEdit ] = useState(false);
 
 	// Submit Function
@@ -54,8 +55,15 @@ export const UserDetails = () => {
 
 		try {
 			const res = await axios.patch(`/api/user/profile/${userData.username}/details`, formData)
-	
-			console.log(res.data)
+			const data = await res.data
+		
+			// Store user to localStorage
+			localStorage.setItem('user', JSON.stringify(data))
+			// Change state
+			dispatch({ type: 'UPDATE', payload: data })
+			// Navigate to profile
+			navigate(`/profile/${data.username}`)
+		
 		} catch (error) {
 			console.log(error)
 		}
