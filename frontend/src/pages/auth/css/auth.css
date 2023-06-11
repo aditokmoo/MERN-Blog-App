@@ -181,6 +181,12 @@
     width: 200px;
 }
 
+.user_image .image {
+    position: relative;
+    width: 200px;
+    height: 180px;
+}
+
 .user_image img {
     object-fit: cover;
     width: 100%;
@@ -190,6 +196,12 @@
 
 .user_image #image {
     display: none;
+}
+
+.user_image #profileLoading {
+    position: absolute;
+    top: 40%;
+    left: 40%;
 }
 
 .user_image label {

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Nav } from '../components/Nav';
 // Hooks
@@ -8,6 +9,8 @@ import userNoImage from '../images/no-image-profile.png';
 //react-icons
 import { FiEdit } from 'react-icons/fi';
 import { FaPlus } from 'react-icons/fa';
+// react spinners
+import { ScaleLoader } from 'react-spinners';
 //css
 import './css/profile.css';
 import { useUsers } from '../hooks/useUsers';
@@ -15,9 +18,10 @@ import { useUsers } from '../hooks/useUsers';
 export const Profile = () => {
 	const { user } = useAuthContext();
 	const { userData } = useUser();
-	const { usersData } = useUsers();
+	const [ isLoading, setIsLoading ] = useState(true)
+	
+	const { username, email } = userData
 	const { id } = useParams();
-	const { username, email, image } = userData
 
 	return (
 		<main>
@@ -26,7 +30,10 @@ export const Profile = () => {
 				<div className="profile">
 					<div className="side_bar">
 						{/* Profile Image */}
-						<img src={userData.image === userNoImage ? userNoImage : `../../public/userImages/${userData.image}`} alt="profile image" />
+						<div className="image">
+						{isLoading && <ScaleLoader color="#3698d6" id='profileLoading' />}
+						<img onLoad={() => setIsLoading(false)} src={userData.image === userNoImage ? userNoImage : `../../public/userImages/${userData.image}`} style={{ display: isLoading ? 'none' : 'block' }} />
+						</div>
 						{/* Profile Details */}
 						<ul className="details">
 							<li>

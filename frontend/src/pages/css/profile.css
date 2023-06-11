@@ -13,12 +13,25 @@
     padding-right: 20px;
 }
 /* Profile image */
-.profile .side_bar img {
+.profile .side_bar .image {
+    background-color: #000;
+    position: relative;
     width: 100%;
     height: 300px;
     border: 6px solid #637ccd;
     border-radius: 10px;
+}
+
+.profile .side_bar img {
     object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.profile .side_bar #profileLoading {
+    position: absolute;
+    top: 45%;
+    left: 45%;
 }
 
 /* Profile details */
