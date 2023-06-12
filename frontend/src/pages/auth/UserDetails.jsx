@@ -20,14 +20,11 @@ export const UserDetails = () => {
 	const [ profileData, setProfileData ] = useState({
 		username: '',
 		email: '',
-		password: ''
+		password: '',
 	});
 	const [ fileImage, setFileImage ] = useState();
 	const [ file, setFile ] = useState();
 	const [ edit, setEdit ] = useState(false);
-
-	// Submit Function
-	const handleClick = () => navigate(`/profile/${user.username}`);
 
 	const handleFormChange = (e) => {
 		// Set user details form data
@@ -48,9 +45,9 @@ export const UserDetails = () => {
 		e.preventDefault();
 
 		const formData = new FormData();
-		formData.append('username', profileData.username);
-		formData.append('email', profileData.email);
-		formData.append('password', profileData.password);
+		formData.append('username', profileData.username === '' ? userData.username : profileData.username);
+		formData.append('email', profileData.email === '' ? userData.email : profileData.email);
+		formData.append('password', profileData.password === '' ? userData.password : profileData.password);
 		formData.append('image', file);
 
 		try {
@@ -120,7 +117,7 @@ export const UserDetails = () => {
 					<ProfileImage handleImageChange={handleImageChange} file={file} user={user} fileImage={fileImage} />
 
 					<div className="btns">
-						<button id="back_btn" onClick={handleClick}>
+						<button id="back_btn" onClick={() => navigate(`/profile/${user.username}`)}>
 							Back
 						</button>
 						<button id="submit_btn" onClick={updateProfile}>

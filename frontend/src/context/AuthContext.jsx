@@ -10,8 +10,6 @@ export const AuthContextProvider = ({ children }) => {
     });
     const { usersData } = useUsers();
 
-    console.log(usersData)
-
     // Side effect for getting data from localstorage and placing it to state
     useEffect(() => {
         const user = localStorage.getItem('user');

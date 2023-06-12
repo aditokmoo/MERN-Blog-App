@@ -17,10 +17,6 @@ const UserScheme = new Schema({
         type: String,
         required: true,
     },
-    confirmPassword: {
-        type: String,
-        required: true,
-    },
     image: {
         type: String
     }
@@ -60,9 +56,8 @@ UserScheme.statics.register = async function(username, email, password, confirmP
     const salt = await bcrypt.genSalt(10);
     // Hash password
     const hash = await bcrypt.hash(password, salt);
-    const hash_confirmed = await bcrypt.hash(confirmPassword, salt);
     // Create user
-    const user = await this.create({ username, email, password: hash, confirmPassword: hash_confirmed, image });
+    const user = await this.create({ username, email, password: hash, image });
     
     return user;
 }

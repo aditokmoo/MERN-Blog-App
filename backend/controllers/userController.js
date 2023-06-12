@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const bcrypt = require('bcrypt');
 
 // Change profile image
 const updateProfile = async (req, res) => {
@@ -10,6 +11,11 @@ const updateProfile = async (req, res) => {
    try {
         const user = await User.findOne({ username: name });
         const token = await createToken(user._id);
+
+        // Create bcrypt salt
+        const salt = await bcrypt.genSalt(10);
+        // Create bcrypt hash
+        const hash = await bcrypt.hash(password, salt)
 
         // if user dosnt exist give some response
         if(!user) {
@@ -26,7 +32,7 @@ const updateProfile = async (req, res) => {
         }
         // if password exist then update 
         if(password) {
-            user.password = password
+            user.password = hash
         }
         // if image exist then update
         if(image) {
