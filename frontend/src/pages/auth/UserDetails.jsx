@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useUser } from '../../hooks/useUser';
 import axios from 'axios';
+// react icons
+import { FaRegSave, FaEdit } from 'react-icons/fa'
 // Images
 import ProfileImage from '../../components/ProfileImage';
+import userNoImage from '../../images/no-image-profile.png';
 // CSS
 import './css/auth.css';
 
@@ -111,7 +114,7 @@ export const UserDetails = () => {
 								/>
 							</div>
 						</div>
-						<button onClick={() => setEdit((prevState) => !prevState)}>{edit ? 'Save' : 'Edit'}</button>
+						<button onClick={() => setEdit((prevState) => !prevState)}>{edit ? <><FaRegSave /> Save</> : <><FaEdit /> Edit</>}</button>
 					</div>
 					{/* User image */}
 					<ProfileImage handleImageChange={handleImageChange} file={file} user={user} fileImage={fileImage} />

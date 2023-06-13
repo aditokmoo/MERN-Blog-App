@@ -4,6 +4,8 @@ import userNoImage from '../images/no-image-profile.png';
 import { useUser } from '../hooks/useUser';
 // react spinners
 import { ScaleLoader } from 'react-spinners';
+//react icons
+import { FaPlus } from 'react-icons/fa'
 
 const ProfileImage = ({ handleImageChange, file, fileImage }) => {
 	const { userData } = useUser();
@@ -22,7 +24,7 @@ const ProfileImage = ({ handleImageChange, file, fileImage }) => {
 				onChange={handleImageChange}
 				accept="image/*"
 			/>
-			<label htmlFor="image">Add Image</label>
+			<label htmlFor="image"><FaPlus /> Add Image</label>
 		</div>
 	);
 };
