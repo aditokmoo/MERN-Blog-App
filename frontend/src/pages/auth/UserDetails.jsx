@@ -5,10 +5,9 @@ import { useAuthContext } from '../../hooks/useAuthContext';
 import { useUser } from '../../hooks/useUser';
 import axios from 'axios';
 // react icons
-import { FaRegSave, FaEdit } from 'react-icons/fa'
+import { FaRegSave, FaEdit } from 'react-icons/fa';
 // Images
 import ProfileImage from '../../components/ProfileImage';
-import userNoImage from '../../images/no-image-profile.png';
 // CSS
 import './css/auth.css';
 
@@ -22,8 +21,7 @@ export const UserDetails = () => {
 	// State
 	const [ profileData, setProfileData ] = useState({
 		username: '',
-		email: '',
-		password: '',
+		email: ''
 	});
 	const [ fileImage, setFileImage ] = useState();
 	const [ file, setFile ] = useState();
@@ -50,7 +48,6 @@ export const UserDetails = () => {
 		const formData = new FormData();
 		formData.append('username', profileData.username === '' ? userData.username : profileData.username);
 		formData.append('email', profileData.email === '' ? userData.email : profileData.email);
-		formData.append('password', profileData.password === '' ? userData.password : profileData.password);
 		formData.append('image', file);
 
 		try {
@@ -69,66 +66,61 @@ export const UserDetails = () => {
 	};
 
 	return (
-		<>
-			<Nav />
-			<div className="details">
-				<div className="container">
-					<h1>User Details</h1>
-					{/* User details */}
-					<div className="user_details">
-						<div className="form_container">
-							<div className="input_container">
-								<label htmlFor="username">Username</label>
-								<input
-									type="text"
-									placeholder={userData.username}
-									id="username"
-									name="username"
-									value={profileData.username}
-									onChange={handleFormChange}
-									readOnly={edit ? false : true}
-								/>
-							</div>
-							<div className="input_container">
-								<label htmlFor="email">Email</label>
-								<input
-									type="email"
-									placeholder={userData.email}
-									id="email"
-									name="email"
-									value={profileData.email}
-									onChange={handleFormChange}
-									readOnly={edit ? false : true}
-								/>
-							</div>
-							<div className="input_container">
-								<label htmlFor="password">Password</label>
-								<input
-									type="password"
-									placeholder="Password"
-									id="password"
-									name="password"
-									value={profileData.password}
-									onChange={handleFormChange}
-									readOnly={edit ? false : true}
-								/>
-							</div>
+		<div className="details">
+			<div className="container">
+				<h1>User Details</h1>
+				{/* User details */}
+				<div className="user_details">
+					<div className="form_container">
+						<div className="input_container">
+							<label htmlFor="username">Username</label>
+							<input
+								type="text"
+								placeholder={userData.username}
+								id="username"
+								name="username"
+								value={profileData.username}
+								onChange={handleFormChange}
+								readOnly={edit ? false : true}
+							/>
 						</div>
-						<button onClick={() => setEdit((prevState) => !prevState)}>{edit ? <><FaRegSave /> Save</> : <><FaEdit /> Edit</>}</button>
+						<div className="input_container">
+							<label htmlFor="email">Email</label>
+							<input
+								type="email"
+								placeholder={userData.email}
+								id="email"
+								name="email"
+								value={profileData.email}
+								onChange={handleFormChange}
+								readOnly={edit ? false : true}
+							/>
+						</div>
 					</div>
-					{/* User image */}
-					<ProfileImage handleImageChange={handleImageChange} file={file} user={user} fileImage={fileImage} />
+					<button onClick={() => setEdit((prevState) => !prevState)}>
+						{edit ? (
+							<>
+								<FaRegSave /> Save
+							</>
+						) : (
+							<>
+								<FaEdit /> Edit
+							</>
+						)}
+					</button>
+				</div>
+				{/* User image */}
+				<ProfileImage handleImageChange={handleImageChange} file={file} user={user} fileImage={fileImage} />
 
-					<div className="btns">
-						<button id="back_btn" onClick={() => navigate(`/profile/${user.username}`)}>
-							Back
-						</button>
-						<button id="submit_btn" onClick={updateProfile}>
-							Submit
-						</button>
-					</div>
+				<div className="btns">
+					<button id="back_btn" onClick={() => navigate(`/profile/${user.username}`)}>
+						Back
+					</button>
+					<button id="submit_btn" onClick={updateProfile}>
+						Submit
+					</button>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };

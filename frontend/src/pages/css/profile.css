@@ -66,13 +66,14 @@
 
 /* Profile Menu */
 .profile .side_bar h3 {
-    margin: 30px 0 15px 10px;
+    margin: 10px 0 15px 5px;
     border-top: 1px solid #222;
     border-bottom: 1px solid #222;
     padding: 10px 0;
 }
 
-.profile .side_bar .menu li a {
+.profile .side_bar .menu li a, 
+.profile .side_bar .menu li button {
     display: flex;
     gap: 10px;
     align-items: center;
@@ -80,12 +81,22 @@
     border: 1px solid #111;
     border-radius: 5px;
     margin: 10px 0;
-    padding: 1.5rem;
+    padding: 1rem;
     cursor: pointer;
     transition: .2s;
+    color: #fff;
+    width: 100%;
+    font-size: 1.4rem;
 }
 
-.profile .side_bar .menu li a:hover {
+.profile .side_bar .menu button {
+    font-size: 1.4rem;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.profile .side_bar .menu li a:hover,
+.profile .side_bar .menu li button:hover {
     background-color: #637ccd;
     border-color: #637ccd;
     color: #fff;

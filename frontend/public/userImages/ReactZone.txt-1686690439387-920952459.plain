@@ -1,0 +1,88 @@
+ReactZone
+
+NAVIGATION (Sidebar i Navbar)
+
+NAVBAR LINKS (if not logged in): 
+-Home
+-Projects
+-Login
+-Signup
+-About
+
+SIDEBAR LINKS (if is logged in):
+-Home
+-Courses
+-Assigments
+-Profile
+-Profile Settings
+
+PAGES
+-Homepage
+-Login
+-Signup
+-Courses
+-Course Detail
+-Profil
+-About
+-Projects
+-Profile Settings
+-Assigments
+-Project Details
+
+HOMEPAGE (6 Sections):
+-Hero Section
+-After Hero Section
+-Section for cards
+-Section for showing projects
+-Newsletter Section
+-Footer
+
+LOGIN
+-Create a form that asks for email and password
+-Do validation (frontend and backend)
+-Store info in cookie
+-Redirect user to homepage
+
+SIGNUP
+-Create a form that asks for email, password, name, image, surname, username, biography
+-Do validation (frontend and backend)
+-Store info in database
+-Redirect user to homepage
+
+COURSES
+-Show lecture(image, title, description)
+-Create topbar for completed, active i all lectures
+-Add searchbar to allow users to search for specific courses by keyword
+-Allow users to click on a course to view its details.
+
+COURSE DETAILS
+-Create a page that displays detailed information about a single course.
+-Include information such as the course name, description, difficulty level, duration, and prerequisites
+-Text( text, images, code snipets)
+-Video lecture
+-Quiz
+
+ASSIGMENTS
+-Show the list of assigments
+-Enable click on assigment to show details
+
+PROFILE
+-Create a page that displays the user's basic information name, email address, and profile picture.
+-Include a section for the user's courses or projects
+-Allow users to edit their profile information.
+
+ABOUT
+-Create a page that provides information about application and team
+-Include a brief history of project,mission statement, goals.
+-Include information about the technology stack we are using.
+-Provide contact information or a contact form for users who want to reach out to us
+
+PROJECTS
+-Create a page that displays a list of projects where user can practice.
+-Include information such as the project name, description, duration
+-Allow users to filter and sort projects by different criteria, such as topic or date.
+-Allow users to click on a project to view its details.
+
+PROFILE SETTING
+-Create a page that allows users to edit their account settings.
+-Implement client-side validation to ensure that the user enters valid data in each field.

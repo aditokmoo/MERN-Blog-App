@@ -4,6 +4,7 @@ import { Nav } from '../components/Nav';
 // Hooks
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useUser } from '../hooks/useUser';
+import { useLogout } from '../hooks/useLogout';
 // images
 import userNoImage from '../images/no-image-profile.png';
 //react-icons
@@ -13,11 +14,11 @@ import { FaPlus } from 'react-icons/fa';
 import { ScaleLoader } from 'react-spinners';
 //css
 import './css/profile.css';
-import { useUsers } from '../hooks/useUsers';
 
 export const Profile = () => {
 	const { user } = useAuthContext();
 	const { userData } = useUser();
+	const { logout } = useLogout();
 	const [ isLoading, setIsLoading ] = useState(true)
 	
 	const { username, email } = userData
@@ -57,6 +58,21 @@ export const Profile = () => {
 									<Link to={`/profile/${user.username}/details`}>
 										<FiEdit /> Edit profile
 									</Link>
+								</li>
+								<li>
+									<Link to=''>
+										<FiEdit /> Change password
+									</Link>
+								</li>
+								<li>
+									<button>
+										<FiEdit /> Delete profile
+									</button>
+								</li>
+								<li>
+									<button onClick={logout}>
+										<FiEdit /> Logout
+									</button>
 								</li>
 							</ul>
 						</>

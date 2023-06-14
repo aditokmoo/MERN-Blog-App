@@ -4,18 +4,13 @@ const bcrypt = require('bcrypt');
 
 // Change profile image
 const updateProfile = async (req, res) => {
-   const { username, email, password } = req.body;
+   const { username, email } = req.body;
    const { name } = req.params;
    const image = req.uniqueName;
 
    try {
         const user = await User.findOne({ username: name });
         const token = await createToken(user._id);
-
-        // Create bcrypt salt
-        const salt = await bcrypt.genSalt(10);
-        // Create bcrypt hash
-        const hash = await bcrypt.hash(password, salt)
 
         // if user dosnt exist give some response
         if(!user) {
@@ -30,22 +25,20 @@ const updateProfile = async (req, res) => {
         if(email) {
             user.email = email
         }
-        // if password exist then update 
-        if(password) {
-            user.password = hash
-        }
         // if image exist then update
         if(image) {
             user.image = image;
         }
 
         // Save updated user to db
-        await user.save();
+        await user.save({
+            validateBeforeSave:true
+        });
 
         // Send response
         res.status(200).json({ username, token })
    } catch (error) {
-    
+        console.log(error)
    }
 }
 
