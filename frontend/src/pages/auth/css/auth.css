@@ -253,6 +253,12 @@
     background-color: #305cc2;
 }
 
+#submit_btn:disabled {
+    background-color: #111;
+    pointer-events: none;
+    color: #555;
+}
+
 #back_btn {
     background-color: transparent;
     color: #305cc2;
