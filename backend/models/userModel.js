@@ -8,33 +8,64 @@ const UserScheme = new Schema({
     username: {
         type: String,
         required: true,
+        minLength: [3, "Username can't be less then 3 characters"],
+        maxLength: [10, "Username can't be bigger then 10 characters"]
     },
     email: {
         type: String,
         required: true,
+        validate: {
+            validator: function(value) {
+                return value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+            }, 
+            message: "Invalid email"
+        }
     },
     password: {
         type: String,
         required: true,
+        minLength: [7, "Password can't be less then 7 characters"],
     },
     image: {
         type: String
     }
 })
 
+// Update
+UserScheme.statics.edit = async function(username, email, name, image) {
+    const user = await this.findOne({ username: name })
+
+    // if user dosnt exist give some response
+    if(!user) {
+        return res.status(404).json({ error: 'User not found' })
+    }
+
+    // if username exist then update 
+    if(username) {
+        user.username = username
+    }
+    // if email exist and valid then update 
+    if(email) {
+        user.email = email
+    }
+    // if image exist then update
+    if(image) {
+        user.image = image;
+    }
+
+    // Save updated user to db
+    const user_update = await user.save({
+        validateBeforeSave:true
+    });
+
+    return user_update
+}
+
 // Register
 UserScheme.statics.register = async function(username, email, password, confirmPassword, image) {
     // Check if email and password exist
     if(!username || !email || !password || !confirmPassword) {
         throw Error('All fields must be fiiled')
-    }
-    // Check if username has min length 3 char
-    if(username.length < 3) {
-        throw Error('Username must be atleast 3 characters')
-    }
-    // Check if email is valid
-    if(!validator.isEmail(email)) {
-        throw Error('Email is not valid')
     }
     // Check if password is strong
     if(!validator.isStrongPassword(password)) {

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Nav } from '../../components/Nav';
 import { useNavigate } from 'react-router';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useUser } from '../../hooks/useUser';
@@ -76,9 +75,10 @@ export const UserDetails = () => {
 			localStorage.setItem('user', JSON.stringify(data));
 			// Change state
 			dispatch({ type: 'UPDATE', payload: data });
+			// Make time for success message to show then navigate
 			setTimeout(() => {
 				// Navigate to profile
-			navigate(`/profile/${data.username}`);
+				navigate(`/profile/${data.username}`);
 			}, 2000)
 			// Success message
 			toast.success('Profile updated', {
@@ -91,7 +91,8 @@ export const UserDetails = () => {
 				progress: undefined,
 				theme: "dark",
 			});
-		} catch (error) {
+		} catch (err) {
+			const error = err.response.data.error.split(':')[2]
 			// Error message
 			toast.error(error, {
                 position: "top-right",

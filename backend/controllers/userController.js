@@ -1,50 +1,27 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
-const bcrypt = require('bcrypt');
 
-// Change profile image
-const updateProfile = async (req, res) => {
-   const { username, email } = req.body;
-   const { name } = req.params;
-   const image = req.uniqueName;
-
-   try {
-        const user = await User.findOne({ username: name });
-        const token = await createToken(user._id);
-
-        // if user dosnt exist give some response
-        if(!user) {
-            return res.status(404).json({ error: 'User not found' })
-        }
-
-        // if username exist then update 
-        if(username) {
-            user.username = username
-        }
-        // if email exist then update 
-        if(email) {
-            user.email = email
-        }
-        // if image exist then update
-        if(image) {
-            user.image = image;
-        }
-
-        // Save updated user to db
-        await user.save({
-            validateBeforeSave:true
-        });
-
-        // Send response
-        res.status(200).json({ username, token })
-   } catch (error) {
-        console.log(error)
-   }
-}
 
 // Create token
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.JWT_SECRET, { expiresIn: '3d' })
+}
+
+// Update Profile
+const updateProfile = async (req, res) => {
+   const { username, email } = req.body;
+   const { name } = req.params;
+    const image = req.uniqueName;
+
+   try {
+        const user = await User.edit(username, email, name, image)
+        const token = await createToken(user._id)
+
+        // Send response
+        res.status(200).json({ username, token })
+   } catch (error) {
+        res.status(400).json({ error: error.message })
+   }
 }
 
 // Register User Function

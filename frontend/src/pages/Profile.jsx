@@ -8,8 +8,10 @@ import { useLogout } from '../hooks/useLogout';
 // images
 import userNoImage from '../images/no-image-profile.png';
 //react-icons
-import { FiEdit } from 'react-icons/fi';
+import { FiEdit, FiLogOut } from 'react-icons/fi';
 import { FaPlus } from 'react-icons/fa';
+import { AiOutlineLock } from 'react-icons/ai'
+import { BsTrash3 } from 'react-icons/bs'
 // react spinners
 import { ScaleLoader } from 'react-spinners';
 //css
@@ -60,18 +62,18 @@ export const Profile = () => {
 									</Link>
 								</li>
 								<li>
-									<Link to=''>
-										<FiEdit /> Change password
+									<Link to={`/profile/${user.username}/change`} >
+										<AiOutlineLock /> Change password
 									</Link>
 								</li>
 								<li>
 									<button>
-										<FiEdit /> Delete profile
+										<BsTrash3 /> Delete profile
 									</button>
 								</li>
 								<li>
 									<button onClick={logout}>
-										<FiEdit /> Logout
+										<FiLogOut /> Logout
 									</button>
 								</li>
 							</ul>
