@@ -1,5 +1,5 @@
 const express = require('express');
-const { register, login, updateProfile, getAllUsers, getUser } = require('../controllers/userController');
+const { register, login, updateProfile, changePassword, getAllUsers, getUser } = require('../controllers/userController');
 
 // Multer package
 const multer = require('multer');
@@ -26,8 +26,11 @@ router.post('/register', register);
 // Login
 router.post('/login', login);
 
-// Update user image
+// Update user profile
 router.patch('/profile/:name/details', uploud.single('image'), updateProfile)
+
+// Change password
+router.patch('/profile/:name/change', changePassword)
 
 // Get users
 router.get('/', getAllUsers);

@@ -31,6 +31,34 @@ const UserScheme = new Schema({
     }
 })
 
+// Change password
+UserScheme.statics.changePassword = async function(username, password) {
+    // Find current user you want to change password
+    const user = await this.findOne({ username });
+
+    // If user dosnt exist give some response
+    if(!user) {
+        return res.status(404).json({ error: 'User not found' })
+    }
+
+    // Generate salt for hashing password
+    const salt = await bcrypt.genSalt(10);
+    // Hash password
+    const hash = await bcrypt.hash(password, salt);
+
+    // Update password if it exist
+    if(password) {
+        user.password = hash
+    }
+
+    // Update user password
+    const update_user_password = await user.save({
+        validateBeforeSave: true
+    })
+
+    return update_user_password;
+}
+
 // Update
 UserScheme.statics.edit = async function(username, email, name, image) {
     const user = await this.findOne({ username: name })
@@ -40,7 +68,7 @@ UserScheme.statics.edit = async function(username, email, name, image) {
         return res.status(404).json({ error: 'User not found' })
     }
 
-    // if username exist then update 
+    // if username exist then update
     if(username) {
         user.username = username
     }

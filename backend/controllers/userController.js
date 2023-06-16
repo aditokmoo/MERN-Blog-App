@@ -1,27 +1,42 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
-
 // Create token
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.JWT_SECRET, { expiresIn: '3d' })
 }
 
+// Change password
+const changePassword = async (req, res) => {
+    const { password } = req.body;
+    const { name } = req.params;
+
+    try {
+        const user = await User.changePassword(name, password);
+        const token = await createToken(user._id);
+
+        // Send response
+        res.status(200).json({ name, token })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
 // Update Profile
 const updateProfile = async (req, res) => {
-   const { username, email } = req.body;
-   const { name } = req.params;
+    const { username, email } = req.body;
+    const { name } = req.params;
     const image = req.uniqueName;
 
-   try {
+    try {
         const user = await User.edit(username, email, name, image)
         const token = await createToken(user._id)
 
         // Send response
         res.status(200).json({ username, token })
-   } catch (error) {
+    } catch (error) {
         res.status(400).json({ error: error.message })
-   }
+    }
 }
 
 // Register User Function
@@ -80,6 +95,7 @@ module.exports = {
     register,
     login,
     updateProfile,
+    changePassword,
     getAllUsers,
     getUser
 }
