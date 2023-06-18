@@ -21,7 +21,7 @@ export const useChangePassword = () => {
             const res = await axios.patch(`/api/user/profile/${userData.username}/change`, { password });
             // Success message
 			toast.success('Password changed', {
-				position: "top-right",
+				position: "bottom-right",
 				autoClose: 1500,
 				hideProgressBar: false,
 				closeOnClick: true,
