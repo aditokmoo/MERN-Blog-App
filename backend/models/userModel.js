@@ -41,13 +41,13 @@ UserScheme.statics.changePassword = async function(username, password) {
         return res.status(404).json({ error: 'User not found' })
     }
 
-    // Generate salt for hashing password
-    const salt = await bcrypt.genSalt(10);
-    // Hash password
-    const hash = await bcrypt.hash(password, salt);
-
     // Update password if it exist
     if(password) {
+        // Generate salt for hashing password
+        const salt = await bcrypt.genSalt(10);
+        // Hash password
+        const hash = await bcrypt.hash(password, salt);
+        // Update password
         user.password = hash
     }
 

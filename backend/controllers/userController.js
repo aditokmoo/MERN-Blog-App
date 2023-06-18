@@ -12,6 +12,10 @@ const changePassword = async (req, res) => {
     const { name } = req.params;
 
     try {
+        if(!password) {
+            throw Error('Password field is empty')
+        }
+
         const user = await User.changePassword(name, password);
         const token = await createToken(user._id);
 

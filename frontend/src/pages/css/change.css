@@ -36,3 +36,9 @@
 .change button:hover {
     opacity: .7;
 }
+
+.change p {
+    color: green;
+    text-align: center;
+    margin: 30px 0;
+}
