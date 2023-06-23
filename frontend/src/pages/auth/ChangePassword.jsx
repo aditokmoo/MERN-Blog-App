@@ -1,9 +1,7 @@
 // Components
 import { ToastContainer } from 'react-toastify';
-import { Nav } from '../components/Nav'
-import { useChangePassword } from '../hooks/useChangePassword';
-// CSS
-import './css/change.css';
+import { Nav } from '../../components/Nav'
+import { useChangePassword } from '../../hooks/useChangePassword';
 
 export const ChangePassword = () => {
   const { password, changePassword, handlePasswordChange } = useChangePassword();

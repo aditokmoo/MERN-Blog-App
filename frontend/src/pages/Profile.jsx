@@ -52,7 +52,7 @@ export const Profile = () => {
 							<h3>Menu</h3>
 							<ul className="menu">
 								<li>
-									<Link to="/details">
+									<Link to={`/profile/${user.username}/create`}>
 										<FaPlus /> Create post
 									</Link>
 								</li>

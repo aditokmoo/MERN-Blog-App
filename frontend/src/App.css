@@ -13,6 +13,7 @@ body {
   background-color: #000;
   box-sizing: border-box;
   font-size: 1.6rem;
+  box-sizing: border-box;
 }
 
 li {
@@ -27,6 +28,10 @@ a {
 input:focus {
   outline: none;
   background-color: #11111c;
+}
+
+textarea:focus {
+  outline: none;
 }
 
 .container {
