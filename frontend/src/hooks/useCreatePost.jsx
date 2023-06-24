@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { useUser } from '../hooks/useUser'
+import { useNavigate } from 'react-router';
+import { useUser } from '../hooks/useUser';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export const useCreatePost = () => {
 	const [ blogData, setBlogData ] = useState({
@@ -9,29 +10,57 @@ export const useCreatePost = () => {
 		desc: ''
 	});
 	const [ images, setImages ] = useState([]);
-    const [ files, setFiles ] = useState([])
+	const [ files, setFiles ] = useState([]);
 	const [ activeTab, setActiveTab ] = useState(0);
-    const { userData } = useUser();
+	const { userData } = useUser();
+	const navigate = useNavigate();
 
 	// Create post
 	const createPost = async (e) => {
 		e.preventDefault();
 
 		const formData = new FormData();
-        formData.append('userId', userData._id);
-        formData.append('author', userData.username);
-        formData.append('title', blogData.title);
-        formData.append('desc', blogData.desc);
-		Array.from(files).forEach(file => {
-			formData.append('images', file)
-		})
+		formData.append('userId', userData._id);
+		formData.append('author', userData.username);
+		formData.append('title', blogData.title);
+		formData.append('desc', blogData.desc);
+		Array.from(files).forEach((file) => {
+			formData.append('images', file);
+		});
 
-        try {
+		try {
+			// Post blog
 			const res = await axios.post('/api/blogs/', formData);
-            const data = await res.data;		
-        } catch (error) {
-            console.log(error)
-        }
+			const data = await res.data;
+			// Navigate to home page
+			setTimeout(() => {
+				navigate('/');
+			}, 1500)
+			// Success message
+			toast.success('Blog posted', {
+				position: "bottom-right",
+				autoClose: 1500,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+			});
+		} catch (error) {
+			const err = error.response.data.error.split(':')[2];
+			// Error message
+			toast.error(err, {
+				position: 'bottom-right',
+				autoClose: 2000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: false,
+				progress: undefined,
+				theme: 'dark'
+			});
+		}
 	};
 
 	// Handle form data change
@@ -46,7 +75,7 @@ export const useCreatePost = () => {
 	const handleImageChange = (e) => {
 		const images = [];
 
-        setFiles(e.target.files)
+		setFiles(e.target.files);
 
 		// File reader
 		Array.from(e.target.files).forEach((file) => {
@@ -62,19 +91,19 @@ export const useCreatePost = () => {
 			reader.readAsDataURL(file);
 		});
 
-        if(e.target.files.length > 4) {
-            // Error message
-					return toast.error('You cant uploud more then 4 images', {
-						position: 'bottom-right',
-						autoClose: 2000,
-						hideProgressBar: false,
-						closeOnClick: true,
-						pauseOnHover: true,
-						draggable: false,
-						progress: undefined,
-						theme: 'dark'
-					});
-        }
+		if (e.target.files.length > 4) {
+			// Error message
+			toast.error('You cant uploud more then 4 images', {
+				position: 'bottom-right',
+				autoClose: 2000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: false,
+				progress: undefined,
+				theme: 'dark'
+			});
+		}
 	};
 
 	// Handle tab
