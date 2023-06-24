@@ -1,15 +1,17 @@
 import { useUser } from '../../hooks/useUser'; 
+import { useCreatePost } from '../../hooks/useCreatePost';
 // Components
 import { Nav } from '../../components/Nav';
 // Icons
-import { FaPlus, FaRegImage } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import { BiText } from 'react-icons/bi';
 import { BsImages } from 'react-icons/bs'
 import { MdOutlinePostAdd } from 'react-icons/md'
+import { ToastContainer } from 'react-toastify';
+// Images
+import userNoImage from '../../images/no-image-profile.png';
 // CSS
 import './css/createPost.css';
-import { useCreatePost } from '../../hooks/useCreatePost';
-import { ToastContainer } from 'react-toastify';
 
 export const CreatePost = () => {
 	const { activeTab, images, handleTab, handleFormChange, handleImageChange, createPost } = useCreatePost();
@@ -70,7 +72,7 @@ export const CreatePost = () => {
 						<div className="right">
 							<span>Author</span>
 							<div className="author">
-								<img src={`../../public/images/${userData.image}`} alt=""  id='author_image'/>
+								<img src={userData.image === userNoImage ? userNoImage : `../../public/images/${userData.image}`} alt=""  id='author_image'/>
 								<p>{userData.username}</p>
 							</div>
 						</div>

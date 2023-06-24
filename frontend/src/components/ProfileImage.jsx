@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { useUser } from '../hooks/useUser';
 // images
 import userNoImage from '../images/no-image-profile.png';
-import { useUser } from '../hooks/useUser';
 // react spinners
 import { ScaleLoader } from 'react-spinners';
 //react icons
