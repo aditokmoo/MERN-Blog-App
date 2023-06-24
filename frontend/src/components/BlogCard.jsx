@@ -6,8 +6,11 @@ import  profilePhoto  from '../images/profile-image.jpg'
 import blogImage from '../images/blog-img.jpg'
 // CSS
 import './css/blogcard.css'
+import { usePosts } from '../hooks/usePosts';
 
 export const BlogCard = () => {
+	const { posts } = usePosts();
+
 	return (
 		<div className="blog">
 			<div className="profile_details">

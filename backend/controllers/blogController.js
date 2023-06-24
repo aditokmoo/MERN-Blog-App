@@ -12,7 +12,17 @@ const createPost = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
-
 }
 
-module.exports = { createPost }
+// Get Posts
+const getPosts = async (req, res) => {
+    try {
+        const posts = await Blog.find();
+
+        res.status(200).json(posts)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
+module.exports = { createPost , getPosts}

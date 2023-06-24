@@ -1,5 +1,5 @@
 const express = require('express');
-const { createPost } = require('../controllers/blogController')
+const { createPost, getPosts } = require('../controllers/blogController')
 const uploud = require('../utilities/multerConfig');
 const router = express.Router();
 
@@ -14,8 +14,10 @@ router.post('/', uploud.array('images'), createPost)
 
 // Comment post
 
+// Get all posts
+router.get('/', getPosts)
+
 // Get post
 
-// Get all posts
 
 module.exports = router
