@@ -11,15 +11,15 @@ import { usePosts } from '../hooks/usePosts';
 export const BlogCard = () => {
 	const { posts } = usePosts();
 
-	return (
+	return posts && posts.map(post => (
 		<div className="blog">
 			<div className="profile_details">
 				<img src={profilePhoto} alt="" />
-				<span>Adi Tokmo</span>
+				<span>{post.author}</span>
 			</div>
-			<img src={blogImage} alt="blog image" />
+			<img src={`../../public/images/${post.images[0]}`} alt="blog image" />
 			<div className="heading">
-				<h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+				<h2>{post.title}</h2>
 				<ul>
 					<li>
 						<AiFillLike /> 0
@@ -33,5 +33,5 @@ export const BlogCard = () => {
 				</ul>
 			</div>
 		</div>
-	);
+	))
 };

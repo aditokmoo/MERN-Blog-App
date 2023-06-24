@@ -39,6 +39,8 @@
 /* Blog image */
 .blog img {
     width: 100%;
+    height: 220px;
+    object-fit: fill;
 }
 
 /* Blog content */
