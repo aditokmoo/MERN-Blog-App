@@ -35,7 +35,7 @@ export const Profile = () => {
 						{/* Profile Image */}
 						<div className="image">
 						{isLoading && <ScaleLoader color="#3698d6" id='profileLoading' />}
-						<img onLoad={() => setIsLoading(false)} src={userData.image === userNoImage ? userNoImage : `../../public/userImages/${userData.image}`} style={{ display: isLoading ? 'none' : 'block' }} />
+						<img onLoad={() => setIsLoading(false)} src={userData.image === userNoImage ? userNoImage : `../../public/images/${userData.image}`} style={{ display: isLoading ? 'none' : 'block' }} />
 						</div>
 						{/* Profile Details */}
 						<ul className="details">

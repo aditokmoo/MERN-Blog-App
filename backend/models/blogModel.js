@@ -7,6 +7,10 @@ const BlogSchema = new Schema({
         type: String,
         required: true
     },
+    author: {
+        type: String,
+        required: true,
+    },
     title: {
         type: String,
         max: 100,
@@ -16,6 +20,11 @@ const BlogSchema = new Schema({
         type: String,
         max: 4000,
         required: true,
+    },
+    images: {
+        type: Array,
+        max: 5,
+        default: [],
     },
     likes: {
         type: Array,

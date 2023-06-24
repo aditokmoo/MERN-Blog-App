@@ -27,7 +27,7 @@
     background-color: #637ccd;
     color: #fff;
     font-weight: bold;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -71,6 +71,7 @@
 
 .blog_content .content ul li.active {
     background-color: #0b0b0d;
+    opacity: .8;
 }
 
 .blog_content .content ul li:hover {
@@ -119,4 +120,64 @@
     object-fit: cover;
     border: 1px solid #111;
     border-radius: 3px;
+}
+
+/* ADD IMAGES SECTION */
+.blog_content .section .image_section {
+    display: flex;
+    margin: 25px 0;
+    gap: 30px;
+}
+
+ .blog_content .section .image_section .file_container #images {
+    display: none;
+}
+
+.blog_content .section .image_section .file_container label {
+    background-color: #0f0f0f;
+    cursor: pointer;
+    display: block;
+    height: 150px;
+    padding: 50px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.blog_content .section .image_section .file_container label:hover {
+    opacity: .8;
+}
+
+.blog_content .section .image_section .file_container label span {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.blog_content .section .image_section .file_container label span:first-child {
+    font-size: 3rem;
+}
+
+.blog_content .section .image_section .image {
+    background-color: #000;
+    width: 185px;
+    height: 150px;
+    border: 3px solid #222;
+    border-radius: 6px;
+}
+
+.blog_content .section .image_section .image img {
+    font-size: 3rem;
+    color: #444;
+    display: flex;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+    width: 100%;
+}
+
+.blog_content .section p {
+    float: right;
+    margin-top: -5px;
+    margin-right: -10px;
+    color: #999;
 }

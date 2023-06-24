@@ -37,7 +37,7 @@ export const Nav = () => {
                             <li>
                                 <Link to={`/profile/${user.username}`}>
                                     {user.username}
-                                    {data && <img src={data.image === userNoImage ? userNoImage : `../../public/userImages/${data.image}`} />}
+                                    {data && <img src={data.image === userNoImage ? userNoImage : `../../public/images/${data.image}`} />}
                                 </Link>
                             </li>
                         </ul>

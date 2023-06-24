@@ -15,7 +15,7 @@ const ProfileImage = ({ handleImageChange, file, fileImage }) => {
 		<div className="user_image">
 			<div className="image">
 				{isLoading && <ScaleLoader color="#3698d6" id='profileLoading' />}
-				<img onLoad={() => setIsLoading(false)} src={file ? fileImage : (userData.image === userNoImage ? userNoImage : `../../public/userImages/${userData.image}`)} style={{ display: isLoading ? 'none' : 'block' }}/>
+				<img onLoad={() => setIsLoading(false)} src={file ? fileImage : (userData.image === userNoImage ? userNoImage : `../../public/images/${userData.image}`)} style={{ display: isLoading ? 'none' : 'block' }}/>
 			</div>
 			<input
 				type="file"
